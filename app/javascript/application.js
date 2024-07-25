@@ -4,3 +4,8 @@ import "popper"
 import "bootstrap"
 
 import "controllers"
+import { init } from "custom/menu"
+
+document.addEventListener('DOMContentLoaded', () => {
+    init();
+});
