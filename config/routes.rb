@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "static_pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  devise_for :users, controllers: { confirmations: "confirmations" }
+  devise_for :users, controllers: { confirmations: "users/confirmations",
+                                    omniauth_callbacks: "users/omniauth_callbacks" }
   resources :users, only: [:index, :show, :destroy] do
     member do
       patch :ban
