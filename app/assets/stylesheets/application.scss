@@ -15,4 +15,9 @@
  */
 @import "bootstrap";
 @import "font-awesome";
-@import "menu";
+@import "global";
+@import "header-nav.partial";
+@import "special-offers.partial";
+@import "meals.partial";
+@import "faq.partial";
+@import "footer.partial";

@@ -1,7 +1,7 @@
 body.burger-open {
   overflow: hidden;
 
-  header {
+  .header {
     border-radius: unset;
     height: 100vh;
   }
@@ -35,8 +35,7 @@ body.burger-open {
 }
 
 .header {
-  background-image: linear-gradient(#2e2f328c, #1f202299),
-    url("/assets/images/header-bg.jpg");
+  background-image: linear-gradient(#2e2f328c, #1f202299), url("header-bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 90%;
@@ -75,6 +74,8 @@ body.burger-open {
     display: none;
     gap: 24px;
     transition: opacity 0.75s ease-in-out;
+    margin: 0;
+    padding: 0;
   }
 
   @media (min-width: 1023.5px) {

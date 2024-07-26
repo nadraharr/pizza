@@ -1,8 +1,9 @@
 <header class="header">
   <nav class="header__nav container">
     <div class="header__nav-menu">
-      <a href="/meals" class="header__nav-logo"
-        ></a>
+      <%= link_to root_path, class: "header__nav-logo" do %>
+        <%= image_tag 'logo.png', alt: 'Pizzeria logo' %>
+      <% end %>
       <ul class="header__nav-list">
         <li class="header__nav-item">
           <%= link_to "Home", root_path %>
@@ -19,7 +20,7 @@
       </ul>
       <div class="nav-icons">
         <a href="#" class="cart-icon"
-          ></a>
+          ><%= image_tag 'cart.svg', alt: 'Cart icon' %></a>
         <button type="button" class="header__menu-btn">
           <span class="header__navicon"></span>
         </button>
@@ -44,3 +45,8 @@
     </div>
   </nav>
 </header>
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% elsif alert.present? %>
+  <p class="alert"><%= alert %></p>
+<% end %>
