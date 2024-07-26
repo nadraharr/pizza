@@ -1,8 +1,9 @@
-<div>
+<div class="container">
   <p> <%= link_to "User: #{user.id}", user %> </p>
   <p>Email: <%= user.email %></p>
   <p>Confirmed: <%= user.confirmed? %></p>
   <p>Locked at: <%= user.locked_at %></p>
+  <p>Role: <%= user.role %></p>
   <p><%= link_to (user.access_locked? ? "Unban" : "Ban"), ban_user_path(user), data: {
                     turbo_method: :patch
                   } %></p>
@@ -10,5 +11,8 @@
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></p>
+  <p><%= link_to "Basic!", set_role_user_path(user, role: 'basic'), data: { turbo_method: :patch } %></p>
+  <p><%= link_to "Moderator!", set_role_user_path(user, role: 'moderator'), data: { turbo_method: :patch } %></p>
+  <p><%= link_to "Admin!", set_role_user_path(user, role: 'admin'), data: { turbo_method: :patch } %></p>
 </div>
 <hr>

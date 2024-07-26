@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :destroy] do
     member do
       patch :ban
+      patch :set_role
     end
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

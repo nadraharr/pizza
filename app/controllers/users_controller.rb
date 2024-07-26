@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authorize_user!
+
   def index
     @users = User.all.order(:id)
   end
@@ -22,5 +24,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to root_path, notice: "User destroyed!"
+  end
+
+  def set_role
+    @user = User.find(params[:id])
+    meth = "#{params[:role]}_role!".to_sym
+    @user.send(meth)
+    redirect_to users_path, notice: "User #{@user.id} now #{@user.role}"
+  end
+
+  private
+
+  def authorize_user!
+    authorize current_user
   end
 end
