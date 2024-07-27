@@ -1,0 +1,10 @@
+FORM
+<%= form_with model: @meal do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :ingredients %>
+  <%= f.text_field :ingredients, multiple: true, value: @meal.ingredients.join(",") %>
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+  <%= f.submit %>
+<% end %>

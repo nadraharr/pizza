@@ -7,7 +7,7 @@
   <p><%= link_to (user.access_locked? ? "Unban" : "Ban"), ban_user_path(user), data: {
                     turbo_method: :patch
                   } %></p>
-  <p><%= link_to "Destroy", user_path(user), data: {
+  <p><%= link_to "Destroy", user, data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></p>

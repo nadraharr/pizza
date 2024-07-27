@@ -6,10 +6,7 @@
       <% end %>
       <ul class="header__nav-list">
         <li class="header__nav-item">
-          <%= link_to "Home", root_path %>
-        </li>
-        <li class="header__nav-item">
-          <%= link_to "Menu", meals_path %>
+          <%= link_to "Menu", root_path %>
         </li>
         <li class="header__nav-item">
           <a href="#">About us</a>
@@ -17,8 +14,13 @@
         <li class="header__nav-item">
           <a href="#">Contacts</a>
         </li>
+      </ul>
+      <ul class="header__nav-list">
         <li class="header__nav-item">
           <%= link_to 'Users', users_path %>
+        </li>
+        <li class="header__nav-item">
+          <%= link_to 'New meal', new_meal_path %>
         </li>
       </ul>
       <div class="nav-icons">

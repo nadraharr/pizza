@@ -1,6 +1,6 @@
 <article class="pizzeria-menu__item">
   <div class="pizzeria-menu__item-image">
-    <%= image_tag "pizzas/#{meal.title}.webp", alt: 'Pizza image' %>
+    <%= image_tag("pizzas/#{meal.title}.webp", alt: "#{meal.title} Pizza") rescue image_tag("pizzas/12.webp", alt: 'Placeholder image') %>
   </div>
   <div class="pizzeria-menu__item-description">
     <p class="pizzeria-menu__item-ingredients">
@@ -15,5 +15,7 @@
     <p class="pizzeria-menu__item-price">
       <%= meal.price %>$ 
     </p>
+    <%= link_to 'Edit', edit_meal_path(meal) %>
+    <%= link_to 'Destroy', meal, data: {turbo_method: :delete} %>
   </div>
 </article>
