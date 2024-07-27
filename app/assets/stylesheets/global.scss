@@ -9,14 +9,15 @@
 :root {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: "Comic Neue", cursive;
   font-weight: 700;
   font-style: normal;
   background-color: #ffebcd;
 }
-
+main {
+  min-height: 90vh;
+}
 .container {
   max-width: 1300px;
   padding: clamp(24px, 1vw, 36px);

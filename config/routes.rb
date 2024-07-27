@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "static_pages#home"
+  root "meals#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   devise_for :users, controllers: { confirmations: "users/confirmations",
                                     omniauth_callbacks: "users/omniauth_callbacks" }
@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       patch :ban
       patch :set_role
     end
+  end
+
+  resources :meals, only: [:index, :show] do
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
