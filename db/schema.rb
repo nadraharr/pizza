@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_27_013654) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_28_032959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "meal_id", null: false
+    t.integer "quantity", default: 1
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["meal_id"], name: "index_cart_items_on_meal_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "total_price", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "meals", force: :cascade do |t|
     t.string "title"
@@ -51,4 +70,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_27_013654) do
     t.index ["role"], name: "index_users_on_role"
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
+
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "meals"
+  add_foreign_key "carts", "users"
 end

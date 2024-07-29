@@ -1,0 +1,30 @@
+<h1>Your Cart</h1>
+<% if @cart.cart_items.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Meal</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.cart_items.each do |item| %>
+        <tr>
+          <td><%= item.meal.title %></td>
+          <td><%= item.quantity %></td>
+          <td><%= number_to_currency(item.meal.price) %></td>
+          <td><%= number_to_currency(item.quantity * item.meal.price) %></td>
+          <td>
+            <%= link_to 'Remove', cart_item_path(item), data: { turbo_method: :delete } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h2>Total: <%= number_to_currency(@cart.total_price) %></h2>
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>
