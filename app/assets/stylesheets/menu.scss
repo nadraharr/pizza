@@ -1,6 +1,6 @@
 @import "global";
-@import "header-nav.partial";
-@import "special-offers.partial";
-@import "meals.partial";
-@import "faq.partial";
-@import "footer.partial";
+@import "_header";
+@import "_special-offers";
+@import "_meals";
+@import "_faq";
+@import "_footer";

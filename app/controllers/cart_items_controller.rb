@@ -4,6 +4,7 @@ class CartItemsController < ApplicationController
 
   def create
     @cart_item = @cart.cart_items.find_or_initialize_by(meal_id: params[:meal_id])
+    @cart_item.quantity = 0 if @cart_item.new_record?
     @cart_item.quantity += params[:quantity].to_i
 
     if @cart_item.save

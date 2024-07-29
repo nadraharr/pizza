@@ -8,21 +8,19 @@
     </p>
     <p class="pizzeria-menu__item-title"><%= meal.title %></p>
     <div class="counter">
-      <button class="counter__button" id="decrease"><i class="fas fa-caret-left" aria-label="decrease"></i></button>
-      <div class="counter__display" id="count" aria-label="product quantity">0</div>
-      <button class="counter__button" id="increase"><i class="fas fa-caret-right" aria-label="increase"></i></button>
+      <button class="counter__button decrease" id="decrease"><i class="fas fa-caret-left" aria-label="decrease"></i></button>
+      <div class="counter__display count" id="count" aria-label="product quantity">0</div>
+      <button class="counter__button increase" id="increase"><i class="fas fa-caret-right" aria-label="increase"></i></button>
+    </div>
+    <div>
+      <%= form_with url: cart_items_path, id: 'add-to-cart-form' do |form| %>
+        <%= form.hidden_field :meal_id, value: meal.id %>
+        <%= form.hidden_field :quantity, id: 'cart-item-quantity', value: 1, class: "cart-item-quantity" %>
+        <%= form.submit "Add to Cart", class: "" %>
+      <% end %>
     </div>
     <p class="pizzeria-menu__item-price">
       <%= number_to_currency(meal.price, precision: 0) %>
     </p>
-    <%= link_to 'Edit', edit_meal_path(meal) %>
-    <%= link_to 'Destroy', meal, data: {turbo_method: :delete} %>
   </div>
-  <div>
-    <p>Price: <%=  %></p>
-    <%= form_with url: cart_items_path do |form| %>
-      <%= form.hidden_field :meal_id, value: meal.id %>
-      <%= form.number_field :quantity, value: 1, min: 1 %>
-      <%= form.submit 'Add to Cart' %>
-    <% end %></div>
 </article>
