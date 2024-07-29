@@ -4,19 +4,42 @@
     <thead>
       <tr>
         <th>Meal</th>
-        <th>Quantity</th>
         <th>Price</th>
         <th>Total</th>
-        <th>Actions</th>
+        <th>Quantity</th>
       </tr>
     </thead>
     <tbody>
       <% @cart.cart_items.each do |item| %>
         <tr>
           <td><%= item.meal.title %></td>
-          <td><%= item.quantity %></td>
           <td><%= number_to_currency(item.meal.price) %></td>
           <td><%= number_to_currency(item.quantity * item.meal.price) %></td>
+          <td>
+            <div class="counter">
+              <% if item.quantity == 1 %>
+                <%= link_to cart_item_path(item), data: { turbo_method: :delete }  do %>
+                  <button type="submit" class="counter__button decrease" id="decrease"><i class="fas fa-caret-left" aria-label="decrease"></i></button>
+                <% end %>
+              <% else %>
+                <%= form_with model: item, url: cart_item_path(item), data: { turbo_method: :patch } do |form| %>
+                  <%= form.hidden_field :meal_id, value: item.meal.id %>
+                  <%= form.hidden_field :quantity, value: (item.quantity - 1) %>
+                  <%= form.button type: 'submit', name: nil, class: "counter__button decrease", id: "decrease" do %>
+                    <i class="fas fa-caret-left" aria-label="decrease"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+              <div class="counter__display count" id="count" aria-label="product quantity"><%= item.quantity %></div>
+              <%= form_with model: item, url: cart_item_path(item), data: { turbo_method: :patch } do |form| %>
+                <%= form.hidden_field :meal_id, value: item.meal.id %>
+                <%= form.hidden_field :quantity, value: (item.quantity + 1) %>
+                <%= form.button type: 'submit', name: nil, class: "counter__button increase", id: "increase" do %>
+                  <i class="fas fa-caret-right" aria-label="increase"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </td>
           <td>
             <%= link_to 'Remove', cart_item_path(item), data: { turbo_method: :delete } %>
           </td>

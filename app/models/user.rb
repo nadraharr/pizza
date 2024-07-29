@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :cart
+  has_many :orders
   enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
