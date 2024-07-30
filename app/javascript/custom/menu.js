@@ -6,5 +6,4 @@ export function init () {
   header()
   offers()
   faq()
-  addToCart()
 }

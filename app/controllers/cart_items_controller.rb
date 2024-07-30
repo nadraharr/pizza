@@ -9,25 +9,25 @@ class CartItemsController < ApplicationController
 
     if @cart_item.save
       @cart.save
-      redirect_to cart_path(@cart), notice: "Item was successfully added to the cart."
+      redirect_back_or_to root_path, notice: "Item was successfully added to the cart."
     else
-      redirect_to meals_path, alert: "Failed to add item to the cart."
+      redirect_back_or_to root_path, alert: "Failed to add item to the cart."
     end
   end
 
   def update
     if @cart_item.update(cart_item_params)
       @cart.save
-      redirect_to cart_path(@cart), notice: "Item was successfully updated."
+      redirect_back_or_to root_path, notice: "Item was successfully updated."
     else
-      redirect_to cart_path(@cart), alert: "Failed to update item."
+      redirect_back_or_to root_path, alert: "Failed to update item."
     end
   end
 
   def destroy
     @cart_item.destroy
     @cart.save
-    redirect_back_or_to cart_path(@cart), notice: "Item was successfully removed from the cart."
+    redirect_back_or_to root_path, notice: "Item was successfully removed from the cart."
   end
 
   private
