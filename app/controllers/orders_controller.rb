@@ -1,53 +1,43 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :set_cart, only: [:new, :create]
 
   def index
-    @orders = current_user.orders
-  end
-
-  def show
+    @orders = current_user.orders.all
   end
 
   def new
-    @order = current_user.orders.build
+    @order = Order.new
+    @order_items = @cart.cart_items
   end
 
   def create
-    @order = current_user.orders.build(order_params)
-    @order.calculate_total
+    @order = Order.new(order_params)
+    @order.user = current_user
+    @order.total_price = @cart.total_price
 
     if @order.save
-      redirect_to @order, notice: "Order was successfully created."
+      @cart.cart_items.each do |item|
+        @order.order_items.create(meal: item.meal, quantity: item.quantity, price: item.price)
+      end
+      @cart.destroy
+      redirect_to order_path(@order), notice: "Order created!"
     else
       render :new
     end
   end
 
-  def edit
-  end
-
-  def update
-    if @order.update(order_params)
-      @order.calculate_total
-      redirect_to @order, notice: "Order was successfully updated."
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @order.destroy
-    redirect_to orders_url, notice: "Order was successfully destroyed."
+  def show
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
 
   private
 
-  def set_order
-    @order = current_user.orders.find(params[:id])
+  def set_cart
+    @cart = current_user.cart
   end
 
   def order_params
-    params.require(:order).permit(:status, order_items_attributes: [:id, :meal_id, :quantity, :price, :_destroy])
+    params.require(:order).permit(:address, :phone, :total_price, :status)
   end
 end

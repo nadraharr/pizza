@@ -12,9 +12,7 @@ Rails.application.routes.draw do
   resources :meals
   resource :cart, only: [:show]
   resources :cart_items, only: [:create, :update, :destroy]
-  resources :orders do
-    resources :order_items, only: [:create, :update, :destroy]
-  end
+  resources :orders, only: [:new, :create, :show, :index]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

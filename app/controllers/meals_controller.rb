@@ -1,6 +1,7 @@
 class MealsController < ApplicationController
   before_action :set_meal, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, except: [:index, :new, :create]
+  before_action :set_cart, only: [:index]
 
   def index
     authorize Meal
@@ -46,6 +47,10 @@ class MealsController < ApplicationController
 
   def set_meal
     @meal = Meal.find(params[:id])
+  end
+
+  def set_cart
+    @cart = Cart.find_or_create_by(user: current_user)
   end
 
   def meal_params

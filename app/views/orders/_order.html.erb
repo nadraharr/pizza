@@ -1,6 +1,12 @@
 <%= order.id %>
-<%= order.order_items %>
+<%= link_to 'show', order %>
+<%= order.address %>
 <%= order.total_price %>
 <%= order.status %>
-<%= order.meals %>
-<%= link_to 'Show', order %>
+<%= order.phone %>
+<% order.order_items.each do |item| %>
+  <p>Meal ID: <%= item.meal_id %></p>
+  <p>Quantity: <%= item.quantity %></p>
+  <br/>
+<% end %>
+<br/>

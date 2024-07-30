@@ -48,6 +48,7 @@
     </tbody>
   </table>
   <h2>Total: <%= number_to_currency(@cart.total_price) %></h2>
+  <%= link_to 'Create order', new_order_path, class: 'btn btn-primary' %>
 <% else %>
   <p>Your cart is empty.</p>
 <% end %>
