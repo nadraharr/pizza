@@ -1,2 +1,49 @@
 .cart {
+  table {
+    padding: 15px;
+  }
+  th,
+  td {
+    padding: 10px;
+    text-align: start;
+  }
+  th {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .cart-total {
+    padding-block: 15px;
+    font-size: 22px;
+  }
+  .cart-item_remove {
+    font-size: 20px;
+    color: red;
+  }
+
+  .cart-item_title {
+    font-size: 18px;
+    color: rgb(34, 147, 109);
+  }
+
+  .cart-submit {
+    color: blanchedalmond;
+    font-size: 20px;
+    background-color: rgb(34, 147, 109);
+    padding-inline: 14px;
+    padding-block: 5px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  tr {
+    display: grid;
+  }
+  th {
+    display: none;
+  }
+  .counter {
+  }
+  .cart-item_remove {
+  }
 }

@@ -7,13 +7,13 @@
           <th>Meal</th>
           <th>Price</th>
           <th>Total</th>
-          <th>Quantity</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @cart.cart_items.each do |item| %>
           <tr>
-            <td><%= item.meal.title %></td>
+            <td class="cart-item_title"><%= item.meal.title %></td>
             <td><%= number_to_currency(item.meal.price) %></td>
             <td><%= number_to_currency(item.quantity * item.meal.price) %></td>
             <td>
@@ -42,14 +42,16 @@
               </div>
             </td>
             <td>
-              <%= link_to 'Remove', cart_item_path(item), data: { turbo_method: :delete } %>
+              <%= link_to cart_item_path(item), data: { turbo_method: :delete }, class: "cart-item_remove" do %>
+                <i class="fa-solid fa-x"></i>
+              <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <h2>Total: <%= number_to_currency(@cart.total_price) %></h2>
-    <%= link_to 'Create order', new_order_path, class: 'btn btn-primary' %>
+    <p class="cart-total">Cart total: <%= number_to_currency(@cart.total_price) %></p>
+    <%= link_to 'Order!', new_order_path, class: 'cart-submit' %>
   <% else %>
     <p>Your cart is empty.</p>
   <% end %>
