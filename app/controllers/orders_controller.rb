@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_cart, only: [:new, :create]
 
-  def index
-    @orders = current_user.orders.all
+  def show
+    @order = Order.find(params[:id])
   end
 
   def new
@@ -12,32 +12,37 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.user = current_user
-    @order.total_price = @cart.total_price
+    @order.user = current_user if user_signed_in?
+    @order_items = @cart.cart_items
 
     if @order.save
-      @cart.cart_items.each do |item|
-        @order.order_items.create(meal: item.meal, quantity: item.quantity, price: item.price)
+      @order_items.each do |item|
+        @order.order_items.create(
+          meal_id: item.meal_id,
+          quantity: item.quantity,
+          price: item.price,
+        )
       end
-      @cart.destroy
-      redirect_to order_path(@order), notice: "Order created!"
+      @cart.cart_items.destroy_all
+
+      redirect_to @order, notice: "Order was successfully created."
     else
       render :new
     end
   end
 
-  def show
-    @order = Order.find(params[:id])
-    @order_items = @order.order_items
-  end
-
   private
 
   def set_cart
-    @cart = current_user.cart
+    if user_signed_in?
+      @cart = Cart.find_or_create_by(user: current_user)
+    else
+      @cart = Cart.find_or_create_by(id: session[:cart_id])
+      session[:cart_id] = @cart.id unless session[:cart_id]
+    end
   end
 
   def order_params
-    params.require(:order).permit(:address, :phone, :total_price, :status)
+    params.require(:order).permit(:total_price, :address, :phone)
   end
 end
