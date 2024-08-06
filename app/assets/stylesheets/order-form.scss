@@ -1,0 +1,61 @@
+.order-form {
+  ul {
+    padding: 15px;
+  }
+  li {
+    font-size: 18px;
+  }
+  h2,
+  .order-form_total {
+    font-size: 24px;
+    padding-left: 10px;
+  }
+  h2 {
+    padding-top: 15px;
+  }
+  .order-form_total {
+    padding-bottom: 10px;
+  }
+  span {
+    color: rgb(34, 147, 109);
+  }
+  .order-form_edit {
+    color: blanchedalmond;
+    font-size: 18px;
+    background-color: rgb(163, 116, 54);
+    padding-inline: 14px;
+    padding-block: 5px;
+    border-radius: 10px;
+    margin-left: 10px;
+  }
+  .order-form_submit {
+    color: blanchedalmond;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: rgb(34, 147, 109);
+    padding-inline: 14px;
+    padding-block: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    border-style: none;
+    margin-top: 10px;
+  }
+
+  .order-form_form {
+    padding-block: 15px;
+    div {
+      padding: 5px;
+    }
+    .order-form_input {
+      display: block;
+      min-width: 250px;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: whitesmoke;
+    }
+  }
+
+  .order-form_products {
+    margin-left: 20px;
+  }
+}

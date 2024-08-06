@@ -1,23 +1,26 @@
 <div class="order-form container">
   <h1>Create order</h1>
-  <h2>Products</h2>
-  <ul>
-    <% @order_items.each do |item| %>
-      <li><%= item.meal.title %> - <%= item.quantity %> x <%= number_to_currency(item.price) %></li>
-    <% end %>
-  </ul>
-  <%= link_to 'Edit order', cart_path %>
-  <%= form_with model: @order do |form| %>
+  <div class="order-form_products">
+    <h2>Products</h2>
+    <ul>
+      <% @order_items.each do |item| %>
+        <li><span><%= item.meal.title %></span> x <%= item.quantity %> = <%= number_to_currency(item.price * item.quantity) %></li>
+      <% end %>
+    </ul>
+    <p class="order-form_total">Total: <%= number_to_currency(@cart.total_price) %></p>
+    <%= link_to 'Edit', cart_path, class: "order-form_edit" %>
+  </div>
+  <%= form_with model: @order, class: "order-form_form" do |form| %>
     <div>
-      <%= form.label :address, 'Address' %>
-      <%= form.text_field :address %>
+      <%= form.label :address, 'Address:' %>
+      <%= form.text_field :address, class: "order-form_input" %>
     </div>
     <div>
-      <%= form.label :phone, 'Phone number' %>
-      <%= form.text_field :phone %>
+      <%= form.label :phone, 'Phone number:' %>
+      <%= form.text_field :phone, class: "order-form_input" %>
     </div>
     <div>
-      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+      <%= form.submit 'Submit', class: 'order-form_submit' %>
     </div>
   <% end %>
 </div>
