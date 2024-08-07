@@ -50,7 +50,12 @@ class MealsController < ApplicationController
   end
 
   def set_cart
-    @cart = Cart.find_or_create_by(user: current_user)
+    if user_signed_in?
+      @cart = Cart.find_or_create_by(user: current_user)
+    else
+      @cart = Cart.find_or_create_by(id: session[:cart_id])
+      session[:cart_id] = @cart.id unless session[:cart_id]
+    end
   end
 
   def meal_params

@@ -1,0 +1,112 @@
+[
+  {
+    "title": "Margherita",
+    "ingredients": [
+      "canned tomatoes",
+      "mozzarella",
+      "basil",
+      "extra virgin olive oil"
+    ],
+    "price": 3
+  },
+  {
+    "title": "Pepperoni",
+    "ingredients": ["canned tomatoes", "mozzarella", "pepperoni"],
+    "price": 4
+  },
+  {
+    "title": "Four Cheese",
+    "ingredients": ["mozzarella", "parmesan", "gorgonzola", "goat cheese"],
+    "price": 5
+  },
+  {
+    "title": "Hawaiian",
+    "ingredients": ["canned tomatoes", "mozzarella", "ham", "pineapple"],
+    "price": 4
+  },
+  {
+    "title": "BBQ Chicken",
+    "ingredients": [
+      "bbq sauce",
+      "mozzarella",
+      "chicken",
+      "red onions",
+      "cilantro"
+    ],
+    "price": 5
+  },
+  {
+    "title": "Veggie",
+    "ingredients": [
+      "canned tomatoes",
+      "mozzarella",
+      "bell peppers",
+      "onions",
+      "mushrooms",
+      "olives"
+    ],
+    "price": 4
+  },
+  {
+    "title": "Meat Lovers",
+    "ingredients": [
+      "canned tomatoes",
+      "mozzarella",
+      "pepperoni",
+      "sausage",
+      "ham",
+      "bacon"
+    ],
+    "price": 6
+  },
+  {
+    "title": "Buffalo Chicken",
+    "ingredients": [
+      "buffalo sauce",
+      "mozzarella",
+      "chicken",
+      "blue cheese",
+      "celery"
+    ],
+    "price": 5
+  },
+  {
+    "title": "Mushroom",
+    "ingredients": [
+      "canned tomatoes",
+      "mozzarella",
+      "mushrooms",
+      "garlic",
+      "parsley"
+    ],
+    "price": 4
+  },
+  {
+    "title": "Prosciutto",
+    "ingredients": [
+      "canned tomatoes",
+      "mozzarella",
+      "prosciutto",
+      "arugula",
+      "parmesan"
+    ],
+    "price": 6
+  },
+  {
+    "title": "Seafood",
+    "ingredients": [
+      "canned tomatoes",
+      "mozzarella",
+      "shrimp",
+      "squid",
+      "mussels",
+      "garlic"
+    ],
+    "price": 7
+  },
+  {
+    "title": "Truffle",
+    "ingredients": ["truffle cream", "mozzarella", "truffle oil", "mushrooms"],
+    "price": 8
+  }
+]

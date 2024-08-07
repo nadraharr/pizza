@@ -1,22 +1,16 @@
 <article class="pizzeria-menu__item">
   <div class="pizzeria-menu__item-image">
-    <%= image_tag("pizzas/#{meal.title}.webp", alt: "#{meal.title} Pizza") rescue image_tag("pizzas/12.webp", alt: 'Placeholder image') %>
+    <%= image_tag("pizzas/#{meal.title}.webp", alt: "#{meal.title} Pizza") rescue image_tag("pizzas/Margherita.webp", alt: 'Placeholder image') %>
   </div>
   <div class="pizzeria-menu__item-description">
     <p class="pizzeria-menu__item-ingredients">
       <%= meal.ingredients.join(", ") %>
     </p>
     <p class="pizzeria-menu__item-title"><%= meal.title %></p>
-    <% if user_signed_in? %>
-      <% cart = current_user.cart %>
+    <% if @cart.cart_items.find_by(meal_id: meal.id) %>
+      <% item = @cart.cart_items.find_by(meal_id: meal.id) %>
     <% else %>
-      <% cart = Cart.find_or_create_by(id: session[:cart_id]) %>
-      <% session[:cart_id] = cart.id unless session[:cart_id] %>
-    <% end %>
-    <% if cart.cart_items.find_by(meal_id: meal.id) %>
-      <% item = cart.cart_items.find_by(meal_id: meal.id) %>
-    <% else %>
-      <% item = cart.cart_items.build(meal_id: meal.id, quantity: 0) %>
+      <% item = @cart.cart_items.build(meal_id: meal.id, quantity: 0) %>
     <% end %>
     <div class="counter">
       <% if item.quantity == 1 %>
